@@ -1,0 +1,322 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Daterange picker Plugin</title>
+    <script src="../Scripts/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js" type="text/javascript"></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css' rel='stylesheet' type='text/css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="../Scripts/daterangepicker.js"></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css' rel='stylesheet' type='text/css' />
+    <link href="../Content/bootstrap-datepicker3.css" rel="stylesheet" />
+    <link href="../Content/daterangepicker.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.css" rel="stylesheet" />
+    <link href="../Content/ViewStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h2>Bootstrap DateRange Picker</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">Bootstrap DateRange Picker</div>
+            <div class="panel-body">Easy customization date range picker</div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <div class="input-daterange input-group" id="SampleDateRange">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default todaydate" Title="Today Date" type="button"><i class="fa fa-calendar-check-o"></i></button>
+                            </span>
+                            <div class="input-group-btn customdatepickerdropdown">
+                                <button class="btn btn-default btn-inner dropdown-toggle" Title="PreSelect DateRanges" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="yesterday"><a href="#">Yesterday</a></li>
+                                    <li class="Last7Days"><a href="#">Last 7 Days</a></li>
+                                    <li class="Last30Days"><a href="#">Last 30 Days </a></li>
+                                    <li class="LastWeek"><a href="#">Last Week</a></li>
+                                    <li class="ThisMonth"><a href="#">This Month</a></li>
+                                    <li class="LastMonth"><a href="#">Last Month</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control textalignleftdatepicker singleDatePickers" id="FromDate" />
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control textalignleftdatepicker singleDatePickers" id="ToDate" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default clearDates" Title="Clear Dates" type="button"><i class="fa fa-times clearDatesbgcolor" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">Dependencies</div>
+            </div>
+            <div role="contentinfo" class="terms">
+                <p>
+                    © Copyright 2018, Srinivas Nalla.
+
+                    <span class="commit">
+                        Revision <code>1.0</code>.
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+  
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $("#SampleDateRange").datepicker({
+                endDate: "0d",
+                maxViewMode: 3,
+                autoclose: true,
+                todayHighlight: true,
+                forceParse: false,
+                format: 'mm/dd/yyyy',
+                orientation: "bottom"
+            });
+
+            $(document).on("keypress click", ".todaydate", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13 || code === 1) {
+                    Today(this);
+                    return false;
+                }
+            });
+
+            $(document).on("keypress click", ".yesterday", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    Yesterday(this);
+                }
+            });
+
+            $(document).on("keypress click", ".Last7Days", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    Last7days(this);
+                }
+            });
+
+            $(document).on("keypress click", ".Last30Days", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    Last30Days(this);
+                }
+            });
+
+            $(document).on("keypress click", ".ThisMonth", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    ThisMonth(this);
+                }
+            });
+
+            $(document).on("keypress click", ".LastMonth", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    LastMonth(this);
+                }
+            });
+
+            $(document).on("keypress click", ".LastWeek", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    LastWeek(this);
+                }
+            });
+
+            $(document).on("keypress click", ".clearDates", function (event) {
+                var code = (event.keyCode ? event.keyCode : event.which);
+                if (code === 13  || code === 1) {
+                    clearDates(this);
+                }
+            });
+
+            //set startDate,endDate in dateRangeFields & Add to the Selected Criteria at the top
+            //set focus on next Field in the form.(if next Filed again dateRange it will focus on Today's Date Icon.
+            function setDateAddCriteriaFocusonNextField(startdate, enddate, dateRangeFields, $this) {
+                //SingleDate Input
+                $("[name='" + dateRangeFields[0].name + "']").datepicker('setDate', startdate).datepicker('fill');
+                //If DateRange Input
+                if (dateRangeFields.length > 1){
+                    $("#"+dateRangeFields[0].id).val(startdate);
+                  $("#"+dateRangeFields[1].id).val(enddate);
+                  $("[name='" + dateRangeFields[1].name + "']").datepicker('setDate', enddate).datepicker('fill');
+                 }
+
+            }
+
+            // Date RangePicker Functions Today,Yesterday,Last 7 Days,Last week,Last 30 Days,This Month,Last Month
+            function Today($this) {
+                var today = moment(new Date()).format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').find('input');
+                setDateAddCriteriaFocusonNextField(today, today, dateRangeFields, $this);
+            }
+            function Tomorrow($this) {
+                var tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(tomorrow, tomorrow, dateRangeFields, $this);
+            }
+            function Yesterday($this) {
+                var yesterday = moment().subtract(1, 'days').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(yesterday, yesterday, dateRangeFields, $this);
+            }
+            function Last7days($this) {
+                var startDate = moment().subtract(6, 'days').format('MM/DD/YYYY');
+                var endDate = moment(new Date()).format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function Next7days($this) {
+                var startDate = moment(new Date()).format('MM/DD/YYYY');
+                var endDate = moment().add(6, 'days').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function Last30Days($this) {
+                var startDate = moment().subtract(29, 'days').format('MM/DD/YYYY');
+                var endDate = moment(new Date()).format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function Next30Days($this) {
+                var startDate = moment(new Date()).format('MM/DD/YYYY');
+                var endDate = moment().add(29, 'days').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function LastWeek($this) {
+                var startDate = moment().subtract(1, 'week').startOf('week').format('MM/DD/YYYY');
+                var endDate = moment().subtract(1, 'week').endOf('week').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function NextWeek($this) {
+                var startDate = moment().add(1, 'week').startOf('week').format('MM/DD/YYYY');
+                var endDate = moment().add(1, 'week').endOf('week').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function ThisMonth($this) {
+                var startDate = moment().startOf('month').format('MM/DD/YYYY');
+                var endDate = moment(new Date()).format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function LastMonth($this) {
+                var startDate = moment().subtract(1, 'month').startOf('month').format('MM/DD/YYYY');
+                var endDate = moment().subtract(1, 'month').endOf('month').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function NextMonth($this) {
+                var startDate = moment().add(1, 'month').startOf('month').format('MM/DD/YYYY');
+                var endDate = moment().add(1, 'month').endOf('month').format('MM/DD/YYYY');
+                var dateRangeFields = $($this).closest('div').siblings('input');
+                setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, $this);
+            }
+            function clearDates($this) {
+                $($this).closest('.input-group').find('input').val('').trigger('change');
+                var dateRangeFields = $($this).closest('div').find('input');
+                setDateAddCriteriaFocusonNextField("", "", dateRangeFields, $this);
+            }
+            function clearDatesForDobFields($this) {
+                //$("#" + $($this).closest('div')[0].id).datepicker('setDate', '').datepicker('fill');
+                //$("#" +$($this).closest('div')[0].id).datepicker('destroy', '', '');
+                var dateRangeFields = $($this).closest('div').find('input');
+                //setDateAddCriteriaFocusonNextField("", "", dateRangeFields, $this);
+                $("#" + dateRangeFields[0].id).val("").trigger('change');
+            }
+            function focusnextformelement($this) {
+                //To focus on next element if next element is date range
+                var el = $($this).closest('.form-group').next('.form-group').find('.todaydate');
+                if (el.length === 0) {
+                    //if next element is form control in this div or next div
+                    var divlocation = $($this).closest('.form-group').next('.form-group').find('.form-control');
+                    if (divlocation.length !== 0) {
+                        divlocation.focus();
+                    } else {
+                        var ele = $($this).closest('.form-group').parent().next('.col-md-4');
+                        if (ele.length !== 0) $($this).closest('.form-group').parent().next('.col-md-4').find('.form-group').first('.form-control').focus();
+                    }
+                }
+                else {
+                    el.focus();
+                }
+            }
+
+            function SingleYesterday($this) {
+                var yesterday = moment().subtract(1, 'days').format('MM/DD/YYYY');
+                var input = $($this).closest('div').siblings('input');
+                $("#" + input[0].id).datepicker('setDate', yesterday).datepicker('fill');
+            }
+
+            function SingleTomorrow($this) {
+                var tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
+                var input = $($this).closest('div').siblings('input');
+                $("#" + input[0].id).datepicker('setDate', tomorrow).datepicker('fill');
+            }
+            function clearSingleDates($this) {
+                $($this).closest('.input-group').find('input').val('').trigger('change');
+            }
+            function SingleToday($this) {
+                var today = moment(new Date()).format('MM/DD/YYYY');
+                var input = $($this).closest('div').find('input');
+                $("#" + input[0].id).datepicker('setDate', today).datepicker('fill');
+            }
+
+            function FormatDateTommddyyy(date) {
+                return date.substring(0, 2) + "/" + date.substring(2, 4) + "/" + date.substring(4, 8);
+            }
+            function ValidateStartDate(startDate, endDate, dateRangeFields) {
+                if (startDate === "") {
+                    setDateValues("", "", dateRangeFields);
+                }
+                if (startDate.length === 8) {
+                    startDate = FormatDateTommddyyy(startDate);
+                }
+                if (startDate.length === 10 && moment(startDate).isValid()) {
+                    setDateAddCriteriaFocusonNextField(startDate, startDate, dateRangeFields, null);
+                    setDateValues(startDate, startDate, dateRangeFields);
+                }
+            }
+            function ValidateEndDate(endDate, startDate, dateRangeFields) {
+                if (endDate === "") {
+                    setDateValues("", "", dateRangeFields);
+                }
+                if (endDate.length === 8) {
+                    endDate = FormatDateTommddyyy(endDate);
+                }
+                if (endDate.length === 10 && moment(endDate).isValid() && moment(endDate).isAfter(startDate)) {
+                    setDateAddCriteriaFocusonNextField(startDate, endDate, dateRangeFields, null);
+                    setDateValues(startDate, endDate, dateRangeFields);
+                }
+                if (endDate.length === 10 && moment(endDate).isValid() && moment(startDate).isAfter(endDate)) {
+                    setDateAddCriteriaFocusonNextField(startDate, startDate, dateRangeFields, null);
+                    setDateValues(startDate, startDate, dateRangeFields);
+                }
+            }
+            function setDateValues(startDate, endDate, dateRangeFields) {
+                $("#" + dateRangeFields[0]).val(startDate);
+                $("#" + dateRangeFields[1]).val(endDate);
+            }
+
+        });
+
+</script>

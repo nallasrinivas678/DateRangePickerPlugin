@@ -1,0 +1,49 @@
+﻿body {
+}
+.customdatepickerdropdown {
+    font-size: 11px;
+    float: none;
+    margin: 4px;
+    text-align: left;
+}
+
+    .customdatepickerdropdown ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+    }
+
+    .customdatepickerdropdown li {
+        font-size: 13px;
+        /*background: #f5f5f5;*/
+        border: 1px solid #f5f5f5;
+        border-radius: 1px;
+        color: darkgray;
+        /*padding: 1px 8px;*/
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
+
+        .customdatepickerdropdown li:hover {
+            background: darkgray;
+            /*border: 1px solid darkgray;*/
+            color: #fff;
+        }
+
+        .customdatepickerdropdown li.active {
+            background: darkgray;
+            /*border: 1px solid darkgray;*/
+            color: #fff;
+        }
+.terms {
+    display: block;
+    /*set the div in the bottom right corner*/
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    /*give it some background and border*/
+    background: #eee;
+    border: 1px solid #ddd;
+}
